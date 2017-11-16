@@ -1,0 +1,96 @@
+var _user$project$Save2$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		if (_p0.ctor === 'JsonSelected') {
+			return {
+				ctor: '_Tuple2',
+				_0: model,
+				_1: _user$project$Ports$fileSelected(_p0._0)
+			};
+		} else {
+			return {
+				ctor: '_Tuple2',
+				_0: A2(
+					_elm_lang$core$Debug$log,
+					'In update: JsonRead ',
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{name: _p0._0.filename})),
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
+		}
+	});
+var _user$project$Save2$init = {
+	ctor: '_Tuple2',
+	_0: {name: 'Default'},
+	_1: _elm_lang$core$Platform_Cmd$none
+};
+var _user$project$Save2$Model = function (a) {
+	return {name: a};
+};
+var _user$project$Save2$JsonRead = function (a) {
+	return {ctor: 'JsonRead', _0: a};
+};
+var _user$project$Save2$subscriptions = function (model) {
+	return _user$project$Ports$fileContentRead(_user$project$Save2$JsonRead);
+};
+var _user$project$Save2$JsonSelected = function (a) {
+	return {ctor: 'JsonSelected', _0: a};
+};
+var _user$project$Save2$uploadButton = function () {
+	var ownId = 'jsonUploadButton';
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('jsonWrapper'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$input,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$type_('file'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$id(ownId),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html_Events$on,
+								'change',
+								_elm_lang$core$Json_Decode$succeed(
+									_user$project$Save2$JsonSelected(ownId))),
+							_1: {ctor: '[]'}
+						}
+					}
+				},
+				{ctor: '[]'}),
+			_1: {ctor: '[]'}
+		});
+}();
+var _user$project$Save2$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text(model.name),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$br,
+					{ctor: '[]'},
+					{ctor: '[]'}),
+				_1: {
+					ctor: '::',
+					_0: _user$project$Save2$uploadButton,
+					_1: {ctor: '[]'}
+				}
+			}
+		});
+};
+var _user$project$Save2$main = _elm_lang$html$Html$program(
+	{init: _user$project$Save2$init, view: _user$project$Save2$view, update: _user$project$Save2$update, subscriptions: _user$project$Save2$subscriptions})();
